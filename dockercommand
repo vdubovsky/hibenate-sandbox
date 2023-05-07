@@ -1,0 +1,1 @@
+docker run --name hibernate_sandbox -e POSTGRES_PASSWORD=12345 -e POSTGRES_USER=vdubovsky -e POSTGRES_DB=vdubovsky_hibernate_sandbox -p 5432:5432 -it postgres
