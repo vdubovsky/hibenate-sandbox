@@ -5,6 +5,7 @@ public class HibernateRunnerLazyId {
     // set LAZY fetch type
     public static void main(String[] args) {
         var session = HibernateRunnerCommon.initAndGetSession();
+        session.getTransaction().begin();
         var pet = session.get(Pet.class, 1L);
         System.out.println("Lazy fetch type, no additional requests so far");
         Owner owner = pet.getOwner();
@@ -13,5 +14,6 @@ public class HibernateRunnerLazyId {
         System.out.println("note: id is known because it is foreign key");
         String address = owner.getAddress();
         System.out.println("Only now we need to query Owner as address is not known");
+        session.getTransaction().commit();
     }
 }

@@ -7,7 +7,9 @@ public class HibernateRunnerEagerHQL {
     // set EAGER fetch type
     public static void main(String[] args) {
         Session session = HibernateRunnerCommon.initAndGetSession();
+        session.getTransaction().begin();
         var pet = session.createQuery("select p from Pet p where p.id = 1L", Pet.class).getSingleResult();
         System.out.println("Getting entity via hql, even though fetch type is Eager, additional request takes place");
+        session.getTransaction().commit();
     }
 }
