@@ -9,6 +9,7 @@ public class HibernateRunnerLazyHQL {
         var pet = session.createQuery("select p from Pet p where p.id = 1L", Pet.class).getSingleResult();
         System.out.println("Lazy fetch type, no additional requests so far");
         Owner owner = pet.getOwner();
+        System.out.println("Owner class is : " + owner.getClass());
         System.out.println("note: we dont initialize owner until unknown field is called");
         Long id = owner.getId();
         System.out.println("note: id is known because it is foreign key");
